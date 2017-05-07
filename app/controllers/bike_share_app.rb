@@ -41,4 +41,8 @@ class BikeShareApp < Sinatra::Base
     Station.destroy(id)
     redirect "/stations"
   end
+
+  get '/station-dashboard' do
+    erb :station_dashboard
+  end
 end
