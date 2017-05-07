@@ -1,4 +1,6 @@
 db/csv/*.csv
 personal_notes
 coverage
-public
+public/css
+public/fonts
+public/js
