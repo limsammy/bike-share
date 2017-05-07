@@ -1,3 +1,4 @@
 db/csv/*.csv
 personal_notes
 coverage
+public
