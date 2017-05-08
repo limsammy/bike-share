@@ -1,0 +1,52 @@
+body {
+	padding-top: 80px;
+}
+.navbar-inverse {
+	background-color: #FF785A;
+}
+.navbar-inverse .navbar-brand {
+	color: 	#2D2D2D;
+}
+.navbar-inverse .navbar-brand:focus,
+.navbar-inverse .navbar-brand:hover {
+	color: 	#FFF6A5;
+}
+.navbar-inverse .navbar-nav>li>a {
+	color: #964610;
+}
+.navbar-btn {
+	margin-right: 4px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+#bs-example-navbar-collapse-1 > ul > li > button > a {
+	color: #D1CA88;
+}
+.footer .navbar-fixed-bottom {
+	background-color: #FF785A;
+	padding: 5px;
+}
+body > footer > div > div > p {
+    text-shadow: 2px 2px 4px #000000;
+    float: left;
+}
+body > footer > div > div > p:nth-child(2) {
+	float: right;
+}
+.text-muted {
+	color: white;
+}
+body > div > div > div > img {
+  width: 75px;
+  height: 75px;
+}
+body > div > div > div > h1 {
+	margin-top: -5px;
+}
+.home .container .row div > img {
+	width: 170px;
+	height: 170px;
+	margin-top: 5%
+}

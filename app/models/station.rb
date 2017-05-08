@@ -1,6 +1,7 @@
 require 'pry'
 class Station < ActiveRecord::Base
-  validates :name, :dock_count, :city, :date, presence: true
+  validates :name, :dock_count, :city_id, :date, presence: true
+  belongs_to :city
 
   def self.total
     Station.all.count

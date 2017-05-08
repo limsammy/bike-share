@@ -7,14 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">\
 
-    <title><%= @station.name %></title>
+    <title>City Index</title>
 
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/overwrite.css" rel="stylesheet">
 
 </head>
 
-<body class="station-view">
+<body class="city-index">
 
 
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -48,28 +48,19 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container text-center">
       <div class="row">
         <div class="col-lg-12 text-center">
           <img src="/assets/bicycle.svg"/>
-          <h2>Viewing Station: <i><%= @station.name %></i></h2>
-          <span>Dock Count: <%= @station.dock_count %></span><br />
-          <span>City: <a href="/cities/<%= @station.city.id %>"><%= @station.city.name %></a></span><br />
-          <span>Installation Date: <%= @station.date %></span><br />
-          <span>
-            <form action="/stations/<%= @station.id %>" method="post">
-              <input type="hidden" name="_method" value="DELETE" />
-              <input type="submit" value="Delete" />
-            </form>
-          </span>
-
-          <span>
-            <form action="/stations/<%= @station.id %>/edit">
-              <input type="submit" value="Edit" />
-            </form>
-          </span>
+          <h2>City Index</h2>
         </div>
       </div>
+      <% @cities.each do |city| %>
+        <h3><a href="cities/<%= city.id %>"><%= city.name %></a></h3>
+        <span>City: <%= city.name %></span><br />
+        <span>Number of stations: <%= city.stations.count %></span>
+        <br />
+      <% end %>
     </div>
 
     <script src="/js/jquery.js"></script>
