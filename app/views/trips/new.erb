@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">\
+
+    <title>Create Trip</title>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/overwrite.css" rel="stylesheet">
+
+</head>
+
+<body class="new-trip">
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">BikeShare</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <button class="btn btn-danger navbar-btn"><a href="/station-dashboard">Station Dashboard</a></button>
+                    </li>
+                    <li>
+                        <button class="btn btn-danger navbar-btn"><a href="/stations">Trip Dashboard</a></button>
+                    </li>
+                    <li>
+                        <button class="btn btn-danger navbar-btn"><a href="/stations/new">Weather Dashboard</a></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <img src="/assets/bicycle.svg"/>
+          <h2>Create New Trip</h2>
+        </div>
+      </div>
+        <form action="/trips" method="post">
+            <label>Duration:</label>
+            <input type="text" name="trip[duration]"><br />
+            <label>Select Start Station:</label>
+            <select class="start-station-selector" name="trip[start_station_id]">
+            <% @stations.each do |station| %>
+                <option value="<%= station.id %>"><%= station.name %></option>
+            <% end %>
+            </select><br />
+            <label>Select End Station:</label>
+            <select class="end-station-selector" name="trip[end_station_id]">
+            <% @stations.each do |station| %>
+                <option value="<%= station.id %>"><%= station.name %></option>
+            <% end %>
+            </select><br />
+            <label>Start Date:</label>
+            <input type="text" name="trip[start_date]"><br />
+            <label>End Date:</label>
+            <input type="text" name="trip[end_date]"><br />
+            <label>Bike ID:</label>
+            <input type="text" name="trip[bike_id]"><br />
+            <label>Subscription Type:</label>
+            <select class="subscription_type" name="trip[subscription_type]">
+              <option value="subscriber">Subscriber</option>
+              <option value="customer">Customer</option>
+            </select><br />
+            <label>Zip Code:</label>
+            <input type="text" name="trip[zip_code]"><br />
+            <input type="submit" value="Create Trip" />
+        </form>
+    </div>
+
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+</body>
+
+<footer class="footer">
+
+    <div class="footer navbar-fixed-bottom">
+        <div class="container">
+            <p class="text-muted">Built with Ruby, Sinatra, ActiveRecord, Bootstrap</p>
+            <p class="text-muted">BikeShareSF 2017</p>
+        </div>
+    </div>
+
+</footer>
+
+</html>

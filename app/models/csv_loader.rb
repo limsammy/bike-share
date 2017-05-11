@@ -29,10 +29,49 @@ class CSVLoader
     data.map do |row|
       # binding.pry
       {
-        [:name] => row[:name],
-        [:dock_count] => row[:dock_count].to_i,
-        [:city] => row[:city],
-        [:date] => row[:installation_date] # Should we make this an integer for calcs?
+        :id => row[:id],
+        :name => row[:name],
+        :dock_count => row[:dock_count].to_i,
+        :city => row[:city],
+        :date => row[:installation_date] # Should we make this an integer for calcs?
+      }
+    end
+  end
+
+  def sanitize_trips(path)
+    data = CSV.open(path, headers: true, header_converters: :symbol)
+
+    data.map do |row|
+      {
+        :id => row[:id],
+        :duration => row[:duration],
+        :start_date => row[:start_date],
+        :start_station_id => row[:start_station_id].to_i,
+        :end_date => row[:end_date],
+        :end_station_id => row[:end_station_id].to_i,
+        :bike_id => row[:bike_id].to_i,
+        :subscription_type => row[:subscription_type].downcase,
+        :zip_code => row[:zip_code].to_i
+      }
+    end
+  end
+
+  def sanitize_weather(path)
+    data = CSV.open(path, headers: true, header_converters: :symbol)
+
+    data.map do |row|
+      if row[:precipitation_inches] == 'T'
+        row[:precipitation_inches] = 0
+      end
+      {
+        :date => row[:date],
+        :max_temperature => row[:max_temperature_f],
+        :mean_temperature => row[:mean_temperature_f],
+        :min_temperature => row[:min_temperature_f],
+        :mean_humidity => row[:mean_humidity],
+        :mean_visibility => row[:mean_visibility_miles],
+        :mean_wind_speed => row[:mean_wind_speed_mph],
+        :precipitation => row[:precipitation_inches]
       }
     end
   end

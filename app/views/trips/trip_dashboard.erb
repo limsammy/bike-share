@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>BikeShare - Trips Dashboard</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/overwrite.css" rel="stylesheet">
+
+    <!-- <script src="//www.google.com/jsapi"></script>
+    <script src="chartkick.js"></script>
+    <script src="scripts/app.js"></script> -->
+
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">BikeShare</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <button class="btn btn-danger navbar-btn"><a href="/station-dashboard">Station Dashboard</a></button>
+                    </li>
+                    <li>
+                        <button class="btn btn-danger navbar-btn"><a href="/stations">Trip Dashboard</a></button>
+                    </li>
+                    <li>
+                        <button class="btn btn-danger navbar-btn"><a href="/stations/new">Weather Dashboard</a></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <img src="assets/bicycle.svg" alt="logo" />
+                <h1>Trips Dashboard</h1>
+                <p class="lead">A comprehensive report.</p>
+            </div>
+        </div>
+        <span><p><b>Total Trips: </b><br><%= @trip.count %></p></span>
+        <span><p><b>Average Ride Duration: </b><br><%= @trip.average_duration_of_a_ride %></p></span>
+        <span><p><b>Longest Ride: </b><br><%= @trip.longest_ride %></p></span>
+        <span><p><b>Shortest Ride:</b><br><%= @trip.shortest_ride %></p></span>
+        <span><p><b>Most Popular Start Station:</b><br><%= @trip.station_with_most_starting_place_rides.first.name %></p></span>
+        <span><p><b>Most Popular End Station:</b><br><%= @trip.station_with_most_ending_place_rides.first.name %></p></span>
+
+        <table cellspacing="10">
+            <h3>Month by Month Breakdown:</h3>
+            <th><p>Month</p></th>
+            <th><p>Rides</p></th>
+            <tr> <% months=@trip.month_by_month_breakdown %>
+              <td><strong>January:</strong></td>
+              <td><%= months[:months][1] %></td>
+          </tr>
+          <tr>
+            <td><strong>February:</strong></td>
+            <td><%= months[:months][2] %></td>
+        </tr>
+        <tr>
+            <td><strong>March:</strong></td>
+            <td><%= months[:months][3] %></td>
+        </tr>
+        <tr>
+            <td><strong>April:</strong></td>
+            <td><%= months[:months][4] %></td>
+        </tr>
+        <tr>
+            <td><strong>May:</strong></td>
+            <td><%= months[:months][5] %></td>
+        </tr>
+        <tr>
+            <td><strong>June:</strong></td>
+            <td><%= months[:months][6] %></td>
+        </tr>
+        <tr>
+            <td><strong>July:</strong></td>
+            <td><%= months[:months][7] %></td>
+        </tr>
+        <tr>
+            <td><strong>August:</strong></td>
+            <td><%= months[:months][8] %></td>
+        </tr>
+        <tr>
+            <td><strong>September:</strong></td>
+            <td><%= months[:months][9] %></td>
+        </tr>
+        <tr>
+            <td><strong>October:</strong></td>
+            <td><%= months[:months][10] %></td>
+        </tr>
+        <tr>
+            <td><strong>November:</strong></td>
+            <td><%= months[:months][11] %></td>
+        </tr>
+        <tr>
+            <td><strong>December:</strong></td>
+            <td><%= months[:months][12] %></td>
+        </tr>
+    </table><br>
+
+    <h3>Rides by Year: </h3>
+    <table cellspacing="10">
+        <th><b>Year</b></th>
+        <th><b>Rides</b></th>
+        <% months[:years].each do |year| %>
+        <tr>
+          <td><strong><%= year[0] %>:</strong></td>
+          <td><%= year[1] %></td>
+      </tr>
+      <% end %>
+    </table><br>
+
+  <span><p><b>Most Ridden Bike:</b><br>Bike ID: <%= @trip.most_ridden_bike.keys.first %>, with <%= @trip.most_ridden_bike.values.first %> total rides</p></span>
+
+  <span><p><b>Least Ridden Bike:</b><br>Bike ID: <%= @trip.least_ridden_bike.keys.first %>, with <%= @trip.least_ridden_bike.values.first %> total rides</p></span>
+
+  <span><p><b>Subscriber Count: </b><br><%= @trip.user_subscription_type_count[:subscribers] %></p></span>
+
+  <span><p><b>Subscriber Percentage:</b><br><%= @trip.user_subscription_type_count[:subscribers_percentage] %></p></span>
+  <span><p><b>Customer Count: </b><br><%= @trip.user_subscription_type_count[:customers] %></p></span>
+  <span><p><b>Customer Percentage:</b><br><%= @trip.user_subscription_type_count[:customers_percentage] %></p></span>
+  <span><p><b>Most Popular Date:</b><br><%= @trip.busiest_day.first %> with <%= @trip.busiest_day.last %> trips</p></span>
+
+  <span><p><b>Least Popular Date:</b><br><%= @trip.least_busy_day.first %> with <%= @trip.least_busy_day.last %> trips</p></span>
+  <br>
+  <h3>Weather Report:</h3>
+  <div>
+      <h4>Weather on day with highest rides:</h4>
+      <p><b>High</b> of <i><%=@condition.condition_on_day_with_highest_rides.max_temperature %> degrees F</i></p>
+      <p><b>Low</b> of <i><%=@condition.condition_on_day_with_highest_rides.min_temperature %> degrees F</i></p>
+      <p><b>Average</b> of <i><%=@condition.condition_on_day_with_highest_rides.mean_temperature %> degrees F</i></p>
+      <p><b>Humidity: </b><i><%=@condition.condition_on_day_with_highest_rides.mean_humidity %>%</i></p>
+      <p><b>Visibility: </b><i><%=@condition.condition_on_day_with_highest_rides.mean_visibility %> miles</i></p>
+      <p><b>Wind Speed: </b><i><%=@condition.condition_on_day_with_highest_rides.mean_wind_speed %> miles</i></p>
+      <p><b>Precipitation: </b><i><%=@condition.condition_on_day_with_highest_rides.precipitation %> inches</i></p>
+  </div>
+</div>
+<br><br><br>
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+</body>
+
+<footer class="footer">
+
+    <div class="footer navbar-fixed-bottom">
+        <div class="container">
+            <p class="text-muted">Built with Ruby, Sinatra, ActiveRecord, Bootstrap</p>
+            <p class="text-muted">BikeShareSF 2017</p>
+        </div>
+    </div>
+
+</footer>
+
+</html>

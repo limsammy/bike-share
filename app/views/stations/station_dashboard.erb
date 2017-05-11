@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>BikeShare - Station Dashboard</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/overwrite.css" rel="stylesheet">
+
+    <!-- <script src="//www.google.com/jsapi"></script>
+    <script src="chartkick.js"></script>
+    <script src="scripts/app.js"></script> -->
+
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">BikeShare</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <button class="btn btn-danger navbar-btn"><a href="/station-dashboard">Station Dashboard</a></button>
+                    </li>
+                    <li>
+                        <button class="btn btn-danger navbar-btn"><a href="/stations">Trip Dashboard</a></button>
+                    </li>
+                    <li>
+                        <button class="btn btn-danger navbar-btn"><a href="/stations/new">Weather Dashboard</a></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <img src="assets/bicycle.svg" alt="logo" />
+                <h1>Station Dashboard</h1>
+                <p class="lead">A comprehensive report.</p>
+            </div>
+        </div>
+       <!--  <center>
+            <h1>Test Chart</h1>
+            <p><%= column_chart @station.group_by(&:city).count %></p>
+        </center> -->
+        <span><p><b>Total Stations: </b><br><%= @station.total %></p></span>
+        <span><p><b>Average Amount of Bikes: </b><br><%= @station.average_bikes %></p></span>
+        <span><p><b>Station With the Most Bikes: </b><br><%= @station.most_bikes.name %></p></span>
+        <!-- Form with variabke for amount of stations? -->
+        <span><p><b>Top 5 Stations: </b><br><% @station.top_stations(5).each do |station| %></p>
+        <p><%= station.name %></p></span>
+        <% end %>
+        <span><p><b>Top 5 Lowest Stations: </b><br><% @station.lowest_station(5).each do |station| %></p>
+        <p><%= station.name %></p></span>
+        <% end %>
+
+        <span><p><b>Youngest Station: </b><br><%= @station.most_recent.name %></p></span>
+        <span><p><b>Oldest Station: </b><br><%= @station.oldest.name %></p></span>
+        <br>
+        <br>
+        <br>
+
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+<footer class="footer">
+
+    <div class="footer navbar-fixed-bottom">
+        <div class="container">
+            <p class="text-muted">Built with Ruby, Sinatra, ActiveRecord, Bootstrap</p>
+            <p class="text-muted">BikeShareSF 2017</p>
+        </div>
+    </div>
+
+</footer>
+
+</html>

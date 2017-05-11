@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">\
+
+    <title>Weather for <%= @condition.date %></title>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/overwrite.css" rel="stylesheet">
+
+</head>
+
+<body class="station-view">
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">BikeShare</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <button class="btn btn-danger navbar-btn"><a href="/station-dashboard">Station Dashboard</a></button>
+                    </li>
+                    <li>
+                        <button class="btn btn-danger navbar-btn"><a href="/stations">Trip Dashboard</a></button>
+                    </li>
+                    <li>
+                        <button class="btn btn-danger navbar-btn"><a href="/stations/new">Weather Dashboard</a></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <img src="/assets/bicycle.svg"/>
+          <h2>Date: <%= @condition.date %></h2>
+          <span>Max Temperature: <%= @condition.max_temperature %></span><br />
+          <span>Mean Temperature: <%= @condition.mean_temperature %></span><br />
+          <span>Min Temperature: <%= @condition.min_temperature %></span><br />
+          <span>Mean Humidity: <%= @condition.mean_humidity %></span><br />
+          <span>Mean Visibility: <%= @condition.mean_visibility %></span><br />
+          <span>Mean Wind Speed: <%= @condition.mean_wind_speed %></span><br />
+          <span>Precipitation: <%= @condition.precipitation %></span><br />
+          <span>
+            <form action="/conditions/<%= @condition.id %>/edit">
+              <input type="submit" value="Edit Condition" />
+            </form>
+          </span>
+          <span>
+            <form action="/conditions/<%= @condition.id %>" method="post">
+              <input type="hidden" name="_method" value="DELETE" />
+              <input type="submit" value="Delete Condition" />
+            </form>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+</body>
+
+<footer class="footer">
+
+    <div class="footer navbar-fixed-bottom">
+        <div class="container">
+            <p class="text-muted">Built with Ruby, Sinatra, ActiveRecord, Bootstrap</p>
+            <p class="text-muted">BikeShareSF 2017</p>
+        </div>
+    </div>
+
+</footer>
+
+</html>

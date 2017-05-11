@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>BikeShare - Weather Dashboard</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/overwrite.css" rel="stylesheet">
+
+    <!-- <script src="//www.google.com/jsapi"></script>
+    <script src="chartkick.js"></script>
+    <script src="scripts/app.js"></script> -->
+    <style type="text/css">
+      .details {
+        display: none;
+    }
+    </style>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        $(".range").on('click', function() {
+            $(this).parent().find('.details').slideDown();
+        });
+    });
+</script>
+
+</head>
+
+<body class="weather-dash">
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">BikeShare</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <button class="btn btn-danger navbar-btn"><a href="/station-dashboard">Station Dashboard</a></button>
+                    </li>
+                    <li>
+                        <button class="btn btn-danger navbar-btn"><a href="/stations">Trip Dashboard</a></button>
+                    </li>
+                    <li>
+                        <button class="btn btn-danger navbar-btn"><a href="/stations/new">Weather Dashboard</a></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <img src="assets/bicycle.svg" alt="logo" />
+                <h1>Weather Dashboard</h1>
+                <p class="lead">A comprehensive report.</p>
+            </div>
+        </div>
+        <h3>Rides by Temperature (F) <i>(Click Ranges to Expand)</i></h3>
+        <div class="mdl-card__supporting-text">
+            <div>
+                <span class="range"><h4>50-60</h4></span>
+                <div class="details"><p><b>Max:</b> <%= @condition.sort_temp(50..60)[:max] %></p></div>
+                <div class="details"><p><b>Min:</b> <%= @condition.sort_temp(50..60)[:min] %></p></div>
+                <div class="details"><p><b>Avg:</b> <%= @condition.sort_temp(50..60)[:avg] %></p></div>
+            </div>
+            <div>
+                <span class="range"><h4>60-70</h4></span>
+                <div class="details"><p><b>Max:</b> <%= @condition.sort_temp(60..70)[:max] %></p></div>
+                <div class="details"><p><b>Min:</b> <%= @condition.sort_temp(60..70)[:min] %></p></div>
+                <div class="details"><p><b>Avg:</b> <%= @condition.sort_temp(60..70)[:avg] %></p></div>
+            </div>
+            <div>
+                <span class="range"><h4>70-80</h4></span>
+                <div class="details"><p><b>Max:</b> <%= @condition.sort_temp(70..80)[:max] %></p></div>
+                <div class="details"><p><b>Min:</b> <%= @condition.sort_temp(70..80)[:min] %></p></div>
+                <div class="details"><p><b>Avg:</b> <%= @condition.sort_temp(70..80)[:avg] %></p></div>
+            </div>
+            <div>
+                <span class="range"><h4>80-90</h4></span>
+                <div class="details"><p><b>Max:</b> <%= @condition.sort_temp(80..90)[:max] %></p></div>
+                <div class="details"><p><b>Min:</b> <%= @condition.sort_temp(80..90)[:min] %></p></div>
+                <div class="details"><p><b>Avg:</b> <%= @condition.sort_temp(80..90)[:avg] %></p></div>
+            </div>
+            <div>
+                <span class="range"><h4>90-100</h4></span>
+                <div class="details"><p><b>Max:</b> <%= @condition.sort_temp(90..100)[:max] %></p></div>
+                <div class="details"><p><b>Min:</b> <%= @condition.sort_temp(90..100)[:min] %></p></div>
+                <div class="details"><p><b>Avg:</b> <%= @condition.sort_temp(90..100)[:avg] %></p></div>
+            </div>
+        </div>
+
+        <h3>Rides by Wind Speed <i>(Click Ranges to Expand)</i></h3>
+        <div class="mdl-card__supporting-text">
+            <div>
+                <span class="range"><h4>20-24mph</h4></span>
+                <div class="details"><p><b>Max:</b> <%= @condition.sort_wind(20..24)[:max] %></p></div>
+                <div class="details"><p><b>Min:</b> <%= @condition.sort_wind(20..24)[:min] %></p></div>
+                <div class="details"><p><b>Avg:</b> <%= @condition.sort_wind(20..24)[:avg] %></p></div>
+            </div>
+        </div>
+
+        <h3>Rides by Visability <i>(Click Ranges to Expand)</i></h3>
+        <div class="mdl-card__supporting-text">
+            <div>
+                <span class="range"><h4>0-4 miles</h4></span>
+                <div class="details"><p><b>Max:</b> <%= @condition.sort_sight(0..4.1)[:max] %></p></div>
+                <div class="details"><p><b>Min:</b> <%= @condition.sort_sight(0..4.1)[:min] %></p></div>
+                <div class="details"><p><b>Avg:</b> <%= @condition.sort_sight(0..4.1)[:avg] %></p></div>
+            </div>
+            <div>
+                <span class="range"><h4>4-8 miles</h4></span>
+                <div class="details"><p><b>Max:</b> <%= @condition.sort_sight(8..8)[:max] %></p></div>
+                <div class="details"><p><b>Min:</b> <%= @condition.sort_sight(8..8)[:min] %></p></div>
+                <div class="details"><p><b>Avg:</b> <%= @condition.sort_sight(8..8)[:avg] %></p></div>
+            </div>
+            <div>
+                <span class="range"><h4>8-12 miles</h4></span>
+                <div class="details"><p><b>Max:</b> <%= @condition.sort_sight(8..12)[:max] %></p></div>
+                <div class="details"><p><b>Min:</b> <%= @condition.sort_sight(8..12)[:min] %></p></div>
+                <div class="details"><p><b>Avg:</b> <%= @condition.sort_sight(8..12)[:avg] %></p></div>
+            </div>
+            <div>
+                <span class="range"><h4>12-14 miles</h4></span>
+                <div class="details"><p><b>Max:</b> <%= @condition.sort_sight(12..14)[:max] %></p></div>
+                <div class="details"><p><b>Min:</b> <%= @condition.sort_sight(12..14)[:min] %></p></div>
+                <div class="details"><p><b>Avg:</b> <%= @condition.sort_sight(12..14)[:avg] %></p></div>
+            </div>
+            <div>
+                <span class="range"><h4>14-18 miles</h4></span>
+                <div class="details"><p><b>Max:</b> <%= @condition.sort_sight(14..18)[:max] %></p></div>
+                <div class="details"><p><b>Min:</b> <%= @condition.sort_sight(14..18)[:min] %></p></div>
+                <div class="details"><p><b>Avg:</b> <%= @condition.sort_sight(14..18)[:avg] %></p></div>
+            </div>
+            <div>
+                <span class="range"><h4>18-22 miles</h4></span>
+                <div class="details"><p><b>Max:</b> <%= @condition.sort_sight(18..22)[:max] %></p></div>
+                <div class="details"><p><b>Min:</b> <%= @condition.sort_sight(18..22)[:min] %></p></div>
+                <div class="details"><p><b>Avg:</b> <%= @condition.sort_sight(18..22)[:avg] %></p></div>
+            </div>
+        </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+<footer class="footer">
+
+    <div class="footer navbar-fixed-bottom">
+        <div class="container">
+            <p class="text-muted">Built with Ruby, Sinatra, ActiveRecord, Bootstrap</p>
+            <p class="text-muted">BikeShareSF 2017</p>
+        </div>
+    </div>
+
+</footer>
+
+</html>

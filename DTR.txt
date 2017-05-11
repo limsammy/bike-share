@@ -1,0 +1,35 @@
+Group Expectations
+
+Group Member Names: Nick, Will, Sam, Marc
+
+Project Manager: person
+
+Defining the Relationship (DTR) Questions:
+
+When are group members available to work together? What hours can each group member work individually? Are there any personal time commitments that need to be discussed?
+Sam cannot meet monday after school.
+Marc may have dog doodies
+Nick likes post 4pm breaks.
+Will Saturday sleep in--- we're on board.
+
+What does each group member hope to get out of the project?
+Active Record
+MVC modeling
+Weather data
+
+How will group members communicate? How often will communication happen, and how will open lines of communication be maintained?
+Slack DM
+Github
+Waffle
+maybe phone
+
+What is expected of group members when they run into problems implementing a feature?
+*Slack DM message first
+*In person arranged meeting next
+*Establish outside resources
+
+Is there anything else the group should know about personal work/communication styles?
+tangent friendly
+potential for solo breaks
+naps for breaks
+food
