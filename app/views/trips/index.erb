@@ -32,14 +32,14 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li>
-                        <button class="btn btn-danger navbar-btn"><a href="/station-dashboard">Station Dashboard</a></button>
-                    </li>
-                    <li>
-                        <button class="btn btn-danger navbar-btn"><a href="/stations">Trip Dashboard</a></button>
-                    </li>
-                    <li>
-                        <button class="btn btn-danger navbar-btn"><a href="/stations/new">Weather Dashboard</a></button>
-                    </li>
+							<button class="btn btn-danger navbar-btn"><a href="/station-dashboard">Station Dashboard</a></button>
+					</li>
+					<li>
+							<button class="btn btn-danger navbar-btn"><a href="/trip-dashboard">Trip Dashboard</a></button>
+					</li>
+					<li>
+							<button class="btn btn-danger navbar-btn"><a href="/weather-dashboard">Weather Dashboard</a></button>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -61,6 +61,10 @@
 	      <span>End Station: <%= trip.end_station.name %></span><br />
 	      <span>End Date: <%= trip.end_date %></span><br />
 				<br />
+				<form action="/trips/<%= @trip.id %>" method="post">
+					<input type="hidden" name="_method" value="DELETE" />
+					<input type="submit" value="Delete Trip" />
+				</form>
 	    <% end %>
 	</div>
 
